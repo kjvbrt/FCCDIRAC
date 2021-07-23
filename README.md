@@ -1,9 +1,9 @@
-# Getting Started with FCCDIRAC
+# Getting Started with iLCDirac (hereafter DIRAC) at FCC
 
 
 Contents:
 
-  * [FCCDIRAC](#fccdirac)
+  * [iLCDirac for FCC](#fccdirac)
     * [Overview](#overview)
     * [1 - Existing Infrastructure](#1---existing-infrastructure)
       * [a - Grid philosophy](#a---grid-philosophy)
@@ -56,8 +56,7 @@ Apart from the fact that 10 000 scientists are working on the four main experime
 
 ### b - DIRAC
 
-DIRAC (Distributed Infrastructure with Remote Agent Control) INTERWARE is a software framework for distributed computing providing a complete solution to people requiring access to
-a Grid. 
+DIRAC (Distributed Infrastructure with Remote Agent Control) INTERWARE is a software framework for distributed computing providing a complete solution to people requiring access to a Grid. 
 
 DIRAC project was initially developed for the LHCb Collaboration and became a general-purpose Grid Middleware.
 
@@ -73,6 +72,18 @@ FCC choose to use DIRAC because of its many benefits (Non-exhaustive list) :
 - Security (DISET)
 - BookKeeping
 - Webportal (a Friendly Web interface to monitor your jobs)
+
+FCC is not using directly DIRAC but, iLCDirac, the extension developed by the Linear Colleder community.
+iLCDirac has been modified to include the FCC VO and code wrappers to steer new workflows of interest for FCC,
+for example those using Gaudi.
+
+---
+** NOTE **
+
+The rest needs to be updated
+
+---
+
 
 
 ## 2 - FCCDIRAC
