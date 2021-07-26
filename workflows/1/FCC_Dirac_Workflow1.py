@@ -1,3 +1,6 @@
+######################################################################################
+### This script steers the execution of workflow 1 in DIRAC (iLCDirac) 
+######################################################################################
 
 # Create sandbox files
 import os
@@ -6,17 +9,15 @@ import array
 
 # Utility function
 def copywithreplace(filein, fileout, repls):
-
     # If no replacements, just copy the file
     if len(repls) == 0:
         copy2(filein, fileout)
         return
-
-    #input file
+    # input file
     fin = open(filein, "rt")
-    #output file to write the result to
+    # output file to write the result to
     fout = open(fileout, "wt")
-    #for each line in the input file
+    # for each line in the input file
     for line in fin:
         # Apply each requested replacement
         ltmp = line
@@ -24,13 +25,29 @@ def copywithreplace(filein, fileout, repls):
             lout = ltmp.replace(str(r[0]), str(r[1]))
             ltmp = lout
         fout.write(lout)
-        
-    #close input and output files
+    # close input and output files
     fin.close()
     fout.close()
 
+# DIRAC part
+from DIRAC import S_OK, S_ERROR
 from DIRAC.Core.Base import Script
-Script.parseCommandLine()
+
+# Define a simple class to hold the script parameters
+class Params(object):
+  def __init__(self):
+    self.wms = 'wms'
+  def setWMS(self, value):
+    self.wms = value
+    return S_OK()
+
+# Instantiate the params class
+cliParams = Params()
+Script.registerSwitch('w', 'wms', "WMS where to run", cliParams.setWMS)
+Script.parseCommandLine(ignoreErrors=False)
+# Get the list of services (the switch above appearer as servicesList[0])
+servicesList = Script.getPositionalArgs()
+print servicesList
 
 from ILCDIRAC.Interfaces.API.DiracILC import DiracILC
 from ILCDIRAC.Interfaces.API.NewInterface.UserJob import UserJob
@@ -40,22 +57,19 @@ dIlc = DiracILC()
 
 job = UserJob()
 job.setOutputSandbox(['*.log', '*.sh', '*.py', '*.xml'])
-job.setOutputData( 'edm4hep_test_output.root', '','CERN-DST-EOS' )
-job.setInputSandbox(['./delphes_card_IDEA.tcl',
-                     './edm4hep_output_config.tcl',
-                     './Pythia_LHEinput.cmd'])
+outputdatafile='kktautau_delphes_edm4hep_output.root'
+job.setOutputData(outputdatafile, '','CERN-DST-EOS' )
 
 job.setJobGroup( "KKMC_EDM4HEP_Run" )
 job.setName( "KKMC_EDM4HEP" )
 job.setLogLevel("DEBUG")
 
-kkmc = KKMC ()
-# kkmc.setVersion('latest')  # Set your exact version in here
+kkmc = KKMC()
 kkmc.setVersion('Key4hep-2021-04-30')
 kkmc.setEvtType('Tau')
 kkmc.setEnergy(91.2)
 nevts = 10000
-outputfile = 'kkmu_delphes_' + str(nevts) + '.LHE'
+outputfile = 'kktautau_delphes_' + str(nevts) + '.LHE'
 kkmc.setNumberOfEvents(nevts)
 kkmc.setOutputFile(outputfile)
 
@@ -76,15 +90,18 @@ replacements = [['Main:numberOfEvents = 100','Main:numberOfEvents = ' + str(nevt
                 ['Beams:LHEF = Generation/data/events.lhe','Beams:LHEF = ' + outputfile]]
 copywithreplace(pythiacardpath, pythiacard, replacements)
 
+# Set the sandbox content
+job.setInputSandbox(['./' + delphescard, './' + edm4hepoutdef, './' + pythiacard])
+
 ga = GenericApplication()
 ga.setSetupScript("/cvmfs/sw.hsf.org/spackages2/key4hep-stack/2021-04-30/x86_64-centos7-gcc8.3.0-opt/t5gcd6ltt2ikybap2ndoztsg5uyorxzg/setup.sh")
 ga.setScript("/cvmfs/sw.hsf.org/spackages2/k4simdelphes/00-01-05/x86_64-centos7-gcc8.3.0-opt/beesqo4r5wuqrrijyz57kxbqcdp5pp4v/bin/DelphesPythia8_EDM4HEP")
-# ga.setSetupScript("/cvmfs/sw.hsf.org/key4hep/setup.sh") # Put the exact full path of a given exact version, if that is required
-# ga.setScript("DelphesPythia8_EDM4HEP")
-
-ga.setArguments(delphescard + ' ' + edm4hepoutdef + ' ' + pythiacard + ' ' + "edm4hep_test_output.root")
+ga.setArguments(delphescard + ' ' + edm4hepoutdef + ' ' + pythiacard + ' ' + outputdatafile)
 
 job.append(ga)
 
-# print job.submit(dIlc, mode='wms')  
-print job.submit(dIlc, mode='local')  
+submitmode='wms'
+if len(servicesList) > 0:
+    submitmode= servicesList[0]
+print job.submit(dIlc, mode=submitmode)
+
