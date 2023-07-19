@@ -28,7 +28,7 @@ Contents:
       * [Workflow 4 - Pythia8 and k4SimDelphes in Gaudi](#Workflow-4---Pythia8-and-k4SimDelphes-in-Gaudi)
       * [Workflow 5 - Particle Gun, k4SimGeant4 and k4RecCalorimeter in Gaudi](#Workflow-5---Particle-Gun-k4SimGeant4-and-k4RecCalorimeter-in-Gaudi)
       * [fccconfig](#fccconfig)
-    * [8 - Application Examples](#7---application-examples)
+    * [8 - Config file productions](#8---config-file-productions)
 
 
 
@@ -468,6 +468,6 @@ work in progress
 
 Steering files, cards, etc.
 
-## [8 - Application Examples]()
+## [8 - Config file productions](https://github.com/HEP-FCC/FCCDIRAC/tree/master/configFileProductions)
 
-A directory containing examples of the config files for all the available applications (and their possible interactions), containing also all the inputs and outputs used.
+A directory containing examples of the config files for all the available applications (and their possible interactions), containing also all the inputs and outputs in the case of a production job.
