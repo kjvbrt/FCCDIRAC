@@ -21,7 +21,7 @@ def run():
   delphes.setPythia8Card('p8_ee_ggqq_ecm91.cmd')
   delphes.setRandomSeed(12340)
   delphes.setEnergy(91.19)
-  delphes.setNumberOfEvents(100)
+  delphes.setNumberOfEvents(1000)
   delphes.setOutputFile('output.root')
 
   job.append(delphes)

@@ -21,15 +21,15 @@ Contents:
     * [6 - Get Back Results](#6---get-back-results)
       * [a - Command Line Interface](#a---command-line-interface)
       * [b - Web Portal](#b---web-portal)
-    * [7 - Workflow examples](#7---workflow-examples)
+    * [7 - Workflows](#7---workflows)
       * [Workflow 1 - KKMC and k4SimDelphes in Delphes standalone](#Workflow-1---KKMC-and-k4SimDelphes-in-Delphes-standalone)
       * [Workflow 2 - KKMC and k4SimDelphes in Gaudi](#Workflow-2---KKMC-and-k4SimDelphes-in-Gaudi)
       * [Workflow 3 - Pythia8 and k4SimDelphes in Delphes standalone](#Workflow-3---Pythia8-and-k4SimDelphes-in-Delphes-standalone)
       * [Workflow 4 - Pythia8 and k4SimDelphes in Gaudi](#Workflow-4---Pythia8-and-k4SimDelphes-in-Gaudi)
       * [Workflow 5 - Particle Gun, k4SimGeant4 and k4RecCalorimeter in Gaudi](#Workflow-5---Particle-Gun-k4SimGeant4-and-k4RecCalorimeter-in-Gaudi)
-      * [Workflow 6 - Bhlumi and k4SimDelphes in Delphes standalone](#Workflow-6---Bhlumi-and-k4SimDelphes-in-Delphes-standalone)
-      * [Workflow 7 - Babayaga and k4SimDelphes in Delphes standalone](#Workflow-7---Babayaga-and-k4SimDelphes-in-Delphes-standalone)
       * [fccconfig](#fccconfig)
+    * [8 - Application Examples](#7---application-examples)
+
 
 
 ## Overview
@@ -442,7 +442,7 @@ You ran FCC softwares on the GRID.
 For any questions or any further informations, please contact us at : fcc-experiments-sw-devATSPAMNOTcern.ch
 
 
-## [7 - Workflow Examples](https://github.com/HEP-FCC/FCCDIRAC/tree/master/workflows)
+## [7 - Workflows](https://github.com/HEP-FCC/FCCDIRAC/tree/master/workflows)
 
 ### Workflow 1 - KKMC and k4SimDelphes in Delphes standalone
 
@@ -462,18 +462,12 @@ Generate events with Pythia and process through k4SimDelphes, all inside a Gaudi
 
 ### [Workflow 5 - Particle Gun, k4SimGeant4 and k4RecCalorimeter in Gaudi](https://github.com/HEP-FCC/FCCDIRAC/tree/master/workflows/5)
 
-Generate events with Particle Gun, run a simuation with Geant4, do a reconstruction, all in a Gaudi algorithm. The model of detector used is IDEA, with liquid Argon.
-
-### [Workflow 6 - Bhlumi and k4SimDelphes in Delphes standalone](https://github.com/HEP-FCC/FCCDIRAC/tree/master/workflows/6)
-
-Generate events with Bhlumi. Process through k4SimDelphes, using a Delphes standalone executable with a Pythia LHE reader.
-
-### [Workflow 7 - Babayaga and k4SimDelphes in Delphes standalone](https://github.com/HEP-FCC/FCCDIRAC/tree/master/workflows/7)
-
-(Not yet inplemented)
-
-Generate events with Babayaga. Process through k4SimDelphes, using a Delphes standalone executable with a Pythia LHE reader.
+work in progress
 
 ### [fccconfig](https://github.com/HEP-FCC/FCCDIRAC/tree/master/workflows/fccconfig)
 
 Steering files, cards, etc.
+
+## [8 - Application Examples]()
+
+A directory containing examples of the config files for all the available applications (and their possible interactions), containing also all the inputs and outputs used.
