@@ -16,9 +16,9 @@ def run():
   ga.setVersion('key4hep-latest')
   ga.setExecutableName("k4run")
   ga.setSteeringFile('k4simdelphesalg_pythia.py')
-  ga.setPythia8Card('p8_ee_ggqq_ecm91.cmd') #p8_ee_ZH_ecm240.cmd p8_ee_WW_ecm240 p8_ee_ZZ_ecm240.cmd
+  ga.setPythia8Card('p8_ee_Zbb_ecm91.cmd')
   ga.setExtraCLIArguments("--Pythia8.PythiaInterface.pythiacard pythia8card.cmd --k4SimDelphesAlg.DelphesCard card_IDEA.tcl --k4SimDelphesAlg.DelphesOutputSettings edm4hep_IDEA.tcl")
-  ga.setEnergy(91.19)
+  ga.setEnergy(91.188)
   ga.setNumberOfEvents(50)
   ga.setOutputFile('output.root')
 
