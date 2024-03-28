@@ -1,0 +1,211 @@
+<Workflow>
+<descr_short></descr_short>
+<description><![CDATA[]]></description>
+<name>Hgg_240_rec_CLD_o2_v05_selvaggiTry1</name>
+<origin></origin>
+<type></type>
+<version>0.0</version>
+<Parameter name="JobType" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="User specified type"><value><![CDATA[MCReconstruction]]></value></Parameter>
+<Parameter name="Priority" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="Priority"><value><![CDATA[1]]></value></Parameter>
+<Parameter name="JobGroup" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="User specified job group"><value><![CDATA[@{PRODUCTION_ID}]]></value></Parameter>
+<Parameter name="JobName" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="Name of Job"><value><![CDATA[Name]]></value></Parameter>
+<Parameter name="StdOutput" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="Standard output file"><value><![CDATA[std.out]]></value></Parameter>
+<Parameter name="StdError" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="Standard error file"><value><![CDATA[std.err]]></value></Parameter>
+<Parameter name="InputData" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="Default null input data value"><value><![CDATA[]]></value></Parameter>
+<Parameter name="LogLevel" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="User specified logging level"><value><![CDATA[VERBOSE]]></value></Parameter>
+<Parameter name="arguments" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Arguments to executable Step"><value><![CDATA[]]></value></Parameter>
+<Parameter name="ParametricInputData" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Default null parametric input data value"><value><![CDATA[]]></value></Parameter>
+<Parameter name="ParametricInputSandbox" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Default null parametric input sandbox value"><value><![CDATA[]]></value></Parameter>
+<Parameter name="Platform" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="Platform ( Operating System )"><value><![CDATA[x86_64-slc5-gcc43-opt]]></value></Parameter>
+<Parameter name="IS_PROD" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="This job is a production job"><value><![CDATA[True]]></value></Parameter>
+<Parameter name="CPUTime" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="CPU time in secs"><value><![CDATA[300000]]></value></Parameter>
+<Parameter name="productionVersion" type="string" linked_module="" linked_parameter="" in="True" out="False" description="ProdAPIVersion"><value><![CDATA[$Id$]]></value></Parameter>
+<Parameter name="PRODUCTION_ID" type="string" linked_module="" linked_parameter="" in="True" out="False" description="ProductionID"><value><![CDATA[00012345]]></value></Parameter>
+<Parameter name="JOB_ID" type="string" linked_module="" linked_parameter="" in="True" out="False" description="ProductionJobID"><value><![CDATA[00012345]]></value></Parameter>
+<Parameter name="emailAddress" type="string" linked_module="" linked_parameter="" in="True" out="False" description="CrashEmailAddress"><value><![CDATA[ilcdirac-support@cern.ch]]></value></Parameter>
+<Parameter name="SoftwarePackages" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="ILC Software Packages to be installed"><value><![CDATA[fccconfig.key4hep-devel-2;gaudiapp.key4hep_240310]]></value></Parameter>
+<Parameter name="fccConfigPackage" type="JDL" linked_module="" linked_parameter="" in="True" out="False" description="fccConfigpackage"><value><![CDATA[fccConfigkey4hep-devel-2]]></value></Parameter>
+<Parameter name="Energy" type="float" linked_module="" linked_parameter="" in="True" out="False" description="Energy used"><value><![CDATA[240.0]]></value></Parameter>
+<Parameter name="NbOfEvts" type="int" linked_module="" linked_parameter="" in="True" out="False" description="Number of events to process"><value><![CDATA[1000]]></value></Parameter>
+<Parameter name="TotalSteps" type="String" linked_module="" linked_parameter="" in="True" out="False" description="Total number of steps"><value><![CDATA[1]]></value></Parameter>
+<ModuleDefinition>
+<body><![CDATA[from ILCDIRAC.Workflow.Modules.GaudiAppModule import GaudiAppModule
+]]></body>
+<descr_short></descr_short>
+<description><![CDATA[Module to run GaudiApp]]></description>
+<origin></origin>
+<required></required>
+<type>GaudiAppModule</type>
+<version>0.0</version>
+<Parameter name="randomSeed" type="int" linked_module="" linked_parameter="" in="False" out="False" description="Random seed for the generator"><value><![CDATA[0]]></value></Parameter>
+<Parameter name="randomSeedFlag" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that forces the random seed to be set (e.g. --SimG4Svc.seedValue)"><value><![CDATA[]]></value></Parameter>
+<Parameter name="gaudiWorkFlow" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that chooses the kind of workflow for which gaudi is being used (fullsim or fastsim)"><value><![CDATA[]]></value></Parameter>
+<Parameter name="executableName" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Name of the executable"><value><![CDATA[]]></value></Parameter>
+<Parameter name="startFrom" type="int" linked_module="" linked_parameter="" in="False" out="False" description="From where GaudiApp starts to read the input file"><value><![CDATA[0]]></value></Parameter>
+<Parameter name="detectorModel" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Detecor model for simulation"><value><![CDATA[]]></value></Parameter>
+<Parameter name="inputFileFlag" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that define the type flag for input files (lcio, eventdatasvc, ..)"><value><![CDATA[]]></value></Parameter>
+<Parameter name="pythia8CardContent" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that contains the pythia8 card"><value><![CDATA[]]></value></Parameter>
+<Parameter name="outputFileFlag" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that defines the output file flag (e.g. PodioOutput)"><value><![CDATA[]]></value></Parameter>
+<Parameter name="detectorModelFlag" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that defines the detector model file flag (e.g. GeoSvc)"><value><![CDATA[]]></value></Parameter>
+<Parameter name="debug" type="bool" linked_module="" linked_parameter="" in="False" out="False" description="debug mode"><value><![CDATA[False]]></value></Parameter>
+</ModuleDefinition>
+<ModuleDefinition>
+<body><![CDATA[from ILCDIRAC.Workflow.Modules.ComputeOutputDataList import ComputeOutputDataList
+]]></body>
+<descr_short></descr_short>
+<description><![CDATA[Compute the output data list to be treated by the last finalization]]></description>
+<origin></origin>
+<required></required>
+<type>ComputeOutputDataList</type>
+<version>0.0</version>
+</ModuleDefinition>
+<ModuleDefinition>
+<body><![CDATA[from ILCDIRAC.Workflow.Modules.UploadOutputData import UploadOutputData]]></body>
+<descr_short></descr_short>
+<description><![CDATA[Uploads the output data]]></description>
+<origin></origin>
+<required></required>
+<type>UploadOutputData</type>
+<version>0.0</version>
+<Parameter name="enable" type="bool" linked_module="" linked_parameter="" in="True" out="False" description="EnableFlag"><value><![CDATA[False]]></value></Parameter>
+</ModuleDefinition>
+<ModuleDefinition>
+<body><![CDATA[from ILCDIRAC.Workflow.Modules.RegisterOutputData import RegisterOutputData]]></body>
+<descr_short></descr_short>
+<description><![CDATA[Module to add in the metadata catalog the relevant info about the files]]></description>
+<origin></origin>
+<required></required>
+<type>RegisterOutputData</type>
+<version>0.0</version>
+<Parameter name="enable" type="bool" linked_module="" linked_parameter="" in="True" out="False" description="EnableFlag"><value><![CDATA[False]]></value></Parameter>
+</ModuleDefinition>
+<ModuleDefinition>
+<body><![CDATA[from ILCDIRAC.Workflow.Modules.UploadLogFile import UploadLogFile]]></body>
+<descr_short></descr_short>
+<description><![CDATA[Uploads the output log files]]></description>
+<origin></origin>
+<required></required>
+<type>UploadLogFile</type>
+<version>0.0</version>
+<Parameter name="enable" type="bool" linked_module="" linked_parameter="" in="True" out="False" description="EnableFlag"><value><![CDATA[False]]></value></Parameter>
+</ModuleDefinition>
+<ModuleDefinition>
+<body><![CDATA[from ILCDIRAC.Workflow.Modules.FailoverRequest import FailoverRequest]]></body>
+<descr_short></descr_short>
+<description><![CDATA[Sends any failover requests]]></description>
+<origin></origin>
+<required></required>
+<type>FailoverRequest</type>
+<version>0.0</version>
+<Parameter name="enable" type="bool" linked_module="" linked_parameter="" in="True" out="False" description="EnableFlag"><value><![CDATA[False]]></value></Parameter>
+</ModuleDefinition>
+<ModuleDefinition>
+<body><![CDATA[from ILCDIRAC.Workflow.Modules.ReportErrors import ReportErrors]]></body>
+<descr_short></descr_short>
+<description><![CDATA[Reports errors at the end]]></description>
+<origin></origin>
+<required></required>
+<type>ReportErrors</type>
+<version>0.0</version>
+</ModuleDefinition>
+<StepDefinition>
+<descr_short></descr_short>
+<description><![CDATA[]]></description>
+<origin></origin>
+<type>gaudiapp_step_1</type>
+<version>0.0</version>
+<Parameter name="applicationName" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Application Name"><value><![CDATA[]]></value></Parameter>
+<Parameter name="applicationVersion" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Application Version"><value><![CDATA[]]></value></Parameter>
+<Parameter name="SteeringFile" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Steering File"><value><![CDATA[]]></value></Parameter>
+<Parameter name="applicationLog" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Log File"><value><![CDATA[]]></value></Parameter>
+<Parameter name="ExtraCLIArguments" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Extra CLI arguments"><value><![CDATA[]]></value></Parameter>
+<Parameter name="InputFile" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Input File"><value><![CDATA[]]></value></Parameter>
+<Parameter name="OutputFile" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Output File"><value><![CDATA[]]></value></Parameter>
+<Parameter name="OutputPath" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Output File path on the grid"><value><![CDATA[]]></value></Parameter>
+<Parameter name="outputPathREC" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Output REC File path on the grid"><value><![CDATA[]]></value></Parameter>
+<Parameter name="outputPathDST" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Output DST File path on the grid"><value><![CDATA[]]></value></Parameter>
+<Parameter name="OutputSE" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Output File storage element"><value><![CDATA[]]></value></Parameter>
+<Parameter name="listoutput" type="list" linked_module="" linked_parameter="" in="False" out="False" description="list of output file name"><value><![CDATA[[]]]></value></Parameter>
+<Parameter name="ForgetInput" type="boolean" linked_module="" linked_parameter="" in="False" out="False" description="Do not overwrite input steering"><value><![CDATA[False]]></value></Parameter>
+<ModuleInstance>
+<descr_short></descr_short>
+<name>gaudiapp_step_1</name>
+<type>GaudiAppModule</type>
+<Parameter name="randomSeed" type="int" linked_module="" linked_parameter="" in="False" out="False" description="Random seed for the generator"><value><![CDATA[-1]]></value></Parameter>
+<Parameter name="randomSeedFlag" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that forces the random seed to be set (e.g. --SimG4Svc.seedValue)"><value><![CDATA[]]></value></Parameter>
+<Parameter name="gaudiWorkFlow" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that chooses the kind of workflow for which gaudi is being used (fullsim or fastsim)"><value><![CDATA[]]></value></Parameter>
+<Parameter name="executableName" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Name of the executable"><value><![CDATA[k4run]]></value></Parameter>
+<Parameter name="startFrom" type="int" linked_module="" linked_parameter="" in="False" out="False" description="From where GaudiApp starts to read the input file"><value><![CDATA[0]]></value></Parameter>
+<Parameter name="detectorModel" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Detecor model for simulation"><value><![CDATA[]]></value></Parameter>
+<Parameter name="inputFileFlag" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that define the type flag for input files (lcio, eventdatasvc, ..)"><value><![CDATA[--inputFiles]]></value></Parameter>
+<Parameter name="pythia8CardContent" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that contains the pythia8 card"><value><![CDATA[]]></value></Parameter>
+<Parameter name="outputFileFlag" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that defines the output file flag (e.g. PodioOutput)"><value><![CDATA[--PodioOutput.filename]]></value></Parameter>
+<Parameter name="detectorModelFlag" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Flag that defines the detector model file flag (e.g. GeoSvc)"><value><![CDATA[--GeoSvc.detectors]]></value></Parameter>
+<Parameter name="debug" type="bool" linked_module="" linked_parameter="" in="False" out="False" description="debug mode"><value><![CDATA[False]]></value></Parameter>
+</ModuleInstance>
+<ModuleInstance>
+<descr_short></descr_short>
+<name>gaudiapp_step_1</name>
+<type>ComputeOutputDataList</type>
+</ModuleInstance>
+</StepDefinition>
+<StepDefinition>
+<descr_short></descr_short>
+<description><![CDATA[]]></description>
+<origin></origin>
+<type>Job_Finalization</type>
+<version>0.0</version>
+<ModuleInstance>
+<descr_short></descr_short>
+<name>dataUpload</name>
+<type>UploadOutputData</type>
+<Parameter name="enable" type="bool" linked_module="" linked_parameter="" in="True" out="False" description="EnableFlag"><value><![CDATA[True]]></value></Parameter>
+</ModuleInstance>
+<ModuleInstance>
+<descr_short></descr_short>
+<name>RegisterOutputData</name>
+<type>RegisterOutputData</type>
+<Parameter name="enable" type="bool" linked_module="" linked_parameter="" in="True" out="False" description="EnableFlag"><value><![CDATA[True]]></value></Parameter>
+</ModuleInstance>
+<ModuleInstance>
+<descr_short></descr_short>
+<name>logUpload</name>
+<type>UploadLogFile</type>
+<Parameter name="enable" type="bool" linked_module="" linked_parameter="" in="True" out="False" description="EnableFlag"><value><![CDATA[True]]></value></Parameter>
+</ModuleInstance>
+<ModuleInstance>
+<descr_short></descr_short>
+<name>failoverRequest</name>
+<type>FailoverRequest</type>
+<Parameter name="enable" type="bool" linked_module="" linked_parameter="" in="True" out="False" description="EnableFlag"><value><![CDATA[True]]></value></Parameter>
+</ModuleInstance>
+<ModuleInstance>
+<descr_short></descr_short>
+<name>reportErrors</name>
+<type>ReportErrors</type>
+</ModuleInstance>
+</StepDefinition>
+<StepInstance>
+<descr_short></descr_short>
+<name>gaudiapp_step_1</name>
+<type>gaudiapp_step_1</type>
+<Parameter name="applicationName" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Application Name"><value><![CDATA[gaudiapp]]></value></Parameter>
+<Parameter name="applicationVersion" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Application Version"><value><![CDATA[key4hep_240310]]></value></Parameter>
+<Parameter name="SteeringFile" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Steering File"><value><![CDATA[CLDReconstruction.py]]></value></Parameter>
+<Parameter name="applicationLog" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Log File"><value><![CDATA[gaudiapp_key4hep_240310_@{STEP_ID}.log]]></value></Parameter>
+<Parameter name="ExtraCLIArguments" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Extra CLI arguments"><value><![CDATA[]]></value></Parameter>
+<Parameter name="InputFile" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Input File"><value><![CDATA[]]></value></Parameter>
+<Parameter name="OutputFile" type="string" linked_module="" linked_parameter="" in="False" out="False" description="Output File"><value><![CDATA[Hgg_rec.root]]></value></Parameter>
+<Parameter name="OutputPath" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Output File path on the grid"><value><![CDATA[/fcc/ee/test_spring2024/240gev/Hgg/CLD_o2_v05/rec]]></value></Parameter>
+<Parameter name="outputPathREC" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Output REC File path on the grid"><value><![CDATA[]]></value></Parameter>
+<Parameter name="outputPathDST" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Output DST File path on the grid"><value><![CDATA[]]></value></Parameter>
+<Parameter name="OutputSE" type="string" linked_module="" linked_parameter="" in="True" out="False" description="Output File storage element"><value><![CDATA[CERN-DST-EOS]]></value></Parameter>
+<Parameter name="listoutput" type="list" linked_module="" linked_parameter="" in="False" out="False" description="list of output file name"><value><![CDATA[[{'outputFile': '@{OutputFile}', 'outputPath': '@{OutputPath}', 'outputDataSE': '@{OutputSE}'}]]]></value></Parameter>
+<Parameter name="ForgetInput" type="boolean" linked_module="" linked_parameter="" in="False" out="False" description="Do not overwrite input steering"><value><![CDATA[False]]></value></Parameter>
+</StepInstance>
+<StepInstance>
+<descr_short></descr_short>
+<name>finalization</name>
+<type>Job_Finalization</type>
+</StepInstance>
+</Workflow>
